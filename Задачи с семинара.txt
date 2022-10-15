@@ -1,0 +1,384 @@
+# двумерный список
+sp = []
+for i in range(3):             # количество элементов в масиве (строчки)
+    sp1=[]
+    for j in range(3):        # количество элементов в масиве (столбцы)
+        sp1.append(i+j)
+    sp.append(sp1)
+
+for i in range(len(sp)):
+    print(sp[i])
+
+# недвумерный массив
+sp = []
+for i in range(3):
+    sp1=[]
+    for j in range(3):
+        sp1.append(i+j)
+    sp.append(sp1)
+
+for i in range(len(sp)):
+    print(sp[i])
+
+sp.insert(0,[8,9])
+print("--------")
+
+sp.remove([8,9])           # удаление массива [8,9]
+sp.pop(-1)                      # удаление 1 массива последнего (операция вырезать)
+или
+a=sp.pop(-1)                 # оставляет последнюю строчку отсчет идет справа налево
+
+for i in range(len(sp)):
+    print(sp[i])
+_______________________________________________
+# # # # # - дополнительные команды
+sp = []
+for i in range(3):
+    sp1=[]
+    for j in range(3):
+        sp1.append(i+j)
+    sp.append(sp1)
+
+for i in range(len(sp)):
+    print(sp[i])
+
+sp.insert(0,[8,9])
+print("--------")
+
+sp.remove([8,9])          # удаление массива [8,9]
+a=sp.pop(-1)                 # оставляет последнюю строчку/элемент целиком. отсчет идет справа налево
+
+print(a)
+print("одномерный список")
+print(a[::-1])                 # :: тем самым развернуть список
+a=a + [15,11,99]          # суммировать - [2, 3, 4, 15, 11, 99]
+print(a)
+print(a[2:5])                 # посмотреть все элементы со 2 по 5ый)
+
+ИТОГ: 
+[0, 1, 2]
+[1, 2, 3]
+[2, 3, 4]
+--------
+[2, 3, 4]
+одномерный список
+[4, 3, 2]
+[2, 3, 4, 15, 11, 99]
+[4, 15, 11]
+_______________________________________________
+
+#  Напишите программу, которая по заданному номеру четверти, 
+# показывает диапазон возможных координат точек в этой четверти (x и y).
+
+def show_diapason(num):
+    if num == 1:
+        print('Диапазон Х от 0 до +inf / Y от 0 до +inf')
+    elif num == 2:
+        print('Диапазон Х от 0 до -inf / Y от 0 до +inf')
+    elif num == 3:
+        print('Диапазон Х от 0 до -inf / Y от 0 до -inf')
+    elif num == 4:
+        print('Диапазон Х от 0 до +inf / Y от 0 до -inf')
+    else:
+        print('Введите номер четверти от 1 до 4')
+
+try:
+    n = int(input('Введите номер четверти:'))
+    show_diapason(n)
+except:
+    print()
+
+......................................................................
+num = int(input('Введите номер четверти:'))
+
+match num:
+    case 1:
+        print(" x > 0; y > 0")
+    case 2:
+        print(" x < 0; y > 0")
+    case 3:
+        print(" x < 0; y < 0")
+    case 4:
+        print(" x > 0; y < 0")
+    case _:
+        print("Что-то не так")
+
+_______________________________________________
+#  Напишите программу, которая принимает на вход координаты двух точек 
+# и находит расстояние между ними в 2D пространстве.
+
+# *Пример:*
+
+# - A (3,6); B (2,1) -> 5,09
+# - A (7,-5); B (1,-1) -> 7,21
+
+def creat_list(dim):
+    arr = [0]*dim
+    for i in range(dim):
+        try:
+            arr[i] = float(input(f'Введите координату {i+1} '))
+        except:
+            print('Введите вещественное число')
+
+    return arr
+
+def find_distance(a,b):
+    a = []
+    b = []
+    sum = 0
+    for i in range(len(a)):
+        sum += (a[i] - b[i])**2
+    return sum**1/2
+...................................................
+ЧТО ДАЛЬШЕ???
+...................................................
+
+import math
+try:
+    coordA = []
+    for i in range(2):
+        coordA.append(int(input('Введите координату точки А: ')))
+    coordB = []
+    for i in range(2):
+        coordB.append(int(input('Введите координату точки В: ')))
+    print(coordA, coordB)
+
+    distan = math.sqrt((coordB[0]- coordA[0])**2 + (coordB[1]- coordA[1])**2)
+    print(round(distan, 3))
+except:
+    print('Введите числа')
+_______________________________________________
+
+# Создание словарей списков     
+DATAFRAME  Датафрейм – это двумерная структура данных со столбцами и строками. 
+Это специальный аналог таблицы Excel или SQL – наборе Серий (Series) и
+ наиболее часто используемый объект библиотеки Pandas
+book={}
+
+book['Миша'] = 98465566
+book['Саша']=[64654464,46546464]
+
+print(book)
+
+if 98465566 in book.values():
+    print("Yes")
+else: print("No")
+
+for x,y in book.items():      # вывести весь список/словарь
+    print(x, y)
+
+for x in book.values():      # вывести только номера телефонов
+    print(x)
+
+for x in book.keys():         # вывести только имена (ключ)
+    print(x)
+_______________________________________________
+
+# Напишите программу, которая принимает на вход число N 
+# и выдаёт последовательность из N членов.
+# *Пример:*
+# - Для N = 5: 1, -3, 9, -27, 81
+
+N = int(input('Введите чилос N: '))         # вводим число
+list = [N]                                               # создаем список
+for i in range(N):                                # теперь генерируем ряд чисел в этом диапазоне
+    list.append((-3) ** i)                         # ограничиваем рамки списка, чтобы не выходил
+    
+print(list)
+
+........................................................
+def show_sequence(num):
+for i in range(num):
+print((-3) ** i, end=' ')
+print()
+
+
+try:
+n = int(input('Input N: '))
+show_sequence(n)
+except ValueError:
+print('Input real numbers!')
+
+________________________________________________
+# 2. Для натурального n создать словарь индекс-значение, 
+# состоящий из элементов последовательности 3n + 1.
+# *Пример:*
+# - Для n = 6: {1: 4, 2: 7, 3: 10, 4: 13, 5: 16, 6: 19}
+
+N = int(input('Введите чилос N: '))                # вводим число
+list = {}                                                        # создаем словарь - словарь с фигурными скобками!!
+for i in range(1, N+1):                              # теперь генерируем ряд чисел в этом диапазоне
+    list[i] = 3*i +1
+    
+print(list)
+................................................................
+n = int(input("Введите число: "))
+book = {}
+for i in range (n):
+book [i + 1] = 3*(i + 1) + 1
+print(book)
+
+_______________________________________________
+# 3. Напишите программу, в которой пользователь будет задавать две строки, 
+# а программа - определять количество вхождений одной строки в другой.
+
+list_1 = input('Введите строку 1 (в которой ищем): ')  
+list_2 = input('Введите строку 2 (которую будем искать): ')
+count = 0
+for i in list_1:
+    if list_2 in list_1:
+        count +=1
+
+print(count)
+
+ПОЧЕМУ СЧИТАЕТ СИМВОЛЫ? НУЖНО СЛОВА
+..........................................
+org_text = input("Введите строку: ")
+find_text = input("Введите искомую строку: ")
+
+def text_finder(org_text: str, find_text: str):
+    counter = 0
+    for index in range (0, len(org_text) - len(find_text)+1):
+        if find_text in org_text[index:index+len(find_text)]: counter += 1
+    return counter
+
+print(f"Текст '{find_text}' втречается в тексте {text_finder(org_text, find_text)} раз")
+
+
+# str_1 = 'Hello, world!ll'
+# str_2 = 'll'
+# count = 0
+# for i in range(len(str_1) - len(str_2) + 1):
+#     if str_1[i : i + len(str_2)] == str_2:
+#         count += 1
+# print(count)
+
+
+# str_1 = 'Heeeello, world!ll'
+# str_2 = 'll'
+# print(str_1.find(str_2))
+................................................
+str_one = 'good news everyone, or one'
+str_two = 'one'
+
+count = 0
+index = 0
+start = index
+while index !=1:
+    if str_one.find(str_two, start+1)!=-1:
+        index = str_one.find(str_two, start+1)
+        start = index
+        count +=1
+    else:
+        index = -1
+print(count)
+
+____________________________
+____________________________
+Задание 1
+# Найти Максимальный элемент в списке из 5 элементов. 
+(Не используя встроенные функции max())
+# *Пример*
+# Ввод: 3 -6 10 23 -14
+# Ответ: 23
+
+numbers = [int(i) for i in input().split()]
+max_num = numbers[0]
+for num in numbers:
+    if num > max_num:
+        max_num = num
+print(f'Макс число = {max_num}')
+
+.....................................................
+
+a = int(input())
+b = int(input())
+c = int(input())
+d = int(input())
+e = int(input())
+max = a
+if b > a:
+    max = b
+if c > b:
+    max = c
+if d > c:
+    max = d
+if e > d:
+    max = e
+print(max)
+....................................................
+
+n = [0, 1, 41, 2, 3]
+print(max(n))
+
+....................................................
+n = [0, 1, 41, 2, 3]
+max = n[0]
+for i in range(1, 5):
+    if max < n[i]:
+        max = n[i]
+print(max)
+
+# Задание 2
+# Напишите программу, в которой пользователь будет задавать две строки,
+# одна из них - буква, а вторая фраза/слово, программа должна подсчитать сколько
+# раз буква встретилась во второй строке
+# (Не используя встроенные функции)
+# *Пример*
+# Ввод:
+# a
+# abasdgdsa
+# Ответ: 3
+
+input_char = input('Введите символ: ')
+input_string = input('Введите строку: ')
+count = 0
+for elem in input_string:
+    if elem == input_char:
+        count +=1
+print(f'Всего вхождений {input_char} в строке {input_string} = {count}')
+.......................................................................................
+
+a = 'a'
+b = 'abasfghkaa'      # char - это один символ
+print(b.count(a))
+
+
+# Задание 3
+# Петя и Катя - брат и сестра. Петя - студент, а Катя - школьница. Петя помогает Кате по математике.
+# Он задумывает два натуральных числ а Катя должна их отгадать.
+# Для этого Петя делает две подсказки. Он называет сумму этих чисел S и их произведение Р
+# Помогите Кате отгадать задуманные Петей числа.
+# *Пример*
+# Ввод: 4 4
+# Вывод: 2 2
+# *Пример*
+# Ввод: 5 6
+# Вывод: 2 3
+
+def num_finder(sum, mult):
+    for i in range(1, 100):
+        for j in range(1, 100):
+            if i + j == sum and i * j == mult:
+                return i, j
+    return None
+
+sum, mult = [int(i) for i in input().split()]
+result = num_finder(sum, mult)
+print(f'Числа: {result[0]}') if result != None else print('Числа не найдены')
+...........................................................................
+
+from re import I
+
+
+sum = int(input())
+proiz = int(input())
+for i in range(sum)
+    if i * (sum - i) == proiz:
+        x = i
+        y = sum - i 
+print(x, y)
+
+
+
+
